@@ -600,6 +600,45 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .cat-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
+/* ============ GROCERY GRID ============ */
+.grocery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.grocery-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+.grocery-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: var(--gold-light);
+}
+.grocery-card-img {
+  width: 100%; height: 140px; object-fit: cover; display: block;
+}
+.grocery-card-img-placeholder {
+  width: 100%; height: 140px;
+  background: var(--bg-warm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.grocery-card-body { padding: 16px; }
+.grocery-card-name {
+  font-family: var(--serif); font-size: 0.95rem;
+  font-weight: 600; color: var(--dark); margin-bottom: 4px; line-height: 1.3;
+}
+.grocery-card-dist {
+  font-size: 0.78rem; color: var(--gold); font-weight: 600;
+  letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.grocery-card-desc { font-size: 0.81rem; color: var(--text-muted); line-height: 1.55; }
+@media (max-width: 860px) { .grocery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .grocery-grid { grid-template-columns: repeat(2, 1fr); } }
+
 /* ============ FOOTER ============ */
 footer {
   background: var(--dark); color: rgba(255,255,255,0.45);
@@ -1248,51 +1287,54 @@ footer {
   </div>
 </section>
 
-<!-- ===================== GROCERIES — split: image left / list right ===================== -->
-<div class="split" id="groceries">
-  <div class="split-image">
-    <img src="assets/images/groceries.jpeg" alt="Nearby grocery stores" loading="lazy">
-  </div>
-  <div class="split-content" style="background:var(--bg);">
-    <p class="section-tag">🛒 &nbsp;Groceries</p>
-    <h2 class="section-title" style="color:var(--dark);">Stock Up Nearby</h2>
-    <p style="font-size:0.93rem;color:var(--text-muted);margin-bottom:28px;">From quick corner markets to full supermarkets — all within easy reach of the property.</p>
-    <div class="info-list">
-      <div class="info-item">
-        <span class="info-item-icon">🏪</span>
-        <div>
-          <div class="info-item-title">Olive Tree Market &nbsp;<span style="font-size:0.78rem;font-weight:400;color:var(--text-muted);">~4 min walk</span></div>
-          <div class="info-item-text">📍 4805 Narragansett Ave, San Diego, CA 92107 &nbsp;·&nbsp; 0.2 miles &nbsp;·&nbsp; Great for quick essentials, snacks, and drinks right around the corner.</div>
+<!-- Grocery photo strip -->
+<div class="photo-strip">
+  <img src="assets/images/groceries.jpg?v=3" alt="Groceries near Ocean Beach" loading="lazy">
+  <div class="photo-strip-overlay"></div>
+</div>
+
+<!-- ===================== GROCERIES ===================== -->
+<section id="groceries" class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-tag">🛒 &nbsp;Groceries</p>
+      <h2 class="section-title">Stock Up Nearby</h2>
+      <p class="section-desc">From quick corner markets to full supermarkets — all within easy reach of the property.</p>
+    </div>
+
+    <div class="grocery-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="grocery-card">
+        <img src="assets/images/olive-tree-market.png" alt="Olive Tree Market" loading="lazy" class="grocery-card-img" style="object-position:center 10%;">
+        <div class="grocery-card-body">
+          <div class="grocery-card-name">Olive Tree Market</div>
+          <div class="grocery-card-dist">🚶 ~4 min walk · 0.2 mi</div>
+          <div class="grocery-card-desc">Great for quick essentials, snacks, and drinks right around the corner.</div>
         </div>
       </div>
-      <div class="info-item">
-        <span class="info-item-icon">🌿</span>
-        <div>
-          <div class="info-item-title">OB People's Organic Food Market &nbsp;<span style="font-size:0.78rem;font-weight:400;color:var(--text-muted);">~8 min walk</span></div>
-          <div class="info-item-text">📍 4765 Voltaire St, San Diego, CA 92107 &nbsp;·&nbsp; 0.4 miles &nbsp;·&nbsp; Local organic market with fresh produce and healthy options. A true Ocean Beach institution.</div>
+      <div class="grocery-card">
+        <img src="assets/images/vons.jpg" alt="Vons" loading="lazy" class="grocery-card-img">
+        <div class="grocery-card-body">
+          <div class="grocery-card-name">Vons</div>
+          <div class="grocery-card-dist">🚗 ~5 min drive · 1.5 mi</div>
+          <div class="grocery-card-desc">Full-service grocery store for all your needs — great for a big grocery run.</div>
         </div>
       </div>
-      <div class="info-item">
-        <span class="info-item-icon">🛍️</span>
-        <div>
-          <div class="info-item-title">Vons &nbsp;<span style="font-size:0.78rem;font-weight:400;color:var(--text-muted);">~5 min drive</span></div>
-          <div class="info-item-text">📍 4725 W Point Loma Blvd, San Diego, CA 92107 &nbsp;·&nbsp; 1.5 miles &nbsp;·&nbsp; Full-service grocery store for all your needs — great for a big grocery run.</div>
-        </div>
-      </div>
-      <div class="info-item">
-        <span class="info-item-icon">🥑</span>
-        <div>
-          <div class="info-item-title">Trader Joe's &nbsp;<span style="font-size:0.78rem;font-weight:400;color:var(--text-muted);">~8 min drive</span></div>
-          <div class="info-item-text">📍 2401 Truxtun Rd, San Diego, CA 92106 &nbsp;·&nbsp; 2.5 miles &nbsp;·&nbsp; Popular for unique items, ready meals, and affordable groceries. Guest favorite for snacks and wine.</div>
+      <div class="grocery-card">
+        <img src="assets/images/trader-joes.jpg" alt="Trader Joe's" loading="lazy" class="grocery-card-img">
+        <div class="grocery-card-body">
+          <div class="grocery-card-name">Trader Joe's</div>
+          <div class="grocery-card-dist">🚗 ~8 min drive · 2.5 mi</div>
+          <div class="grocery-card-desc">Popular for unique items, ready meals, and affordable groceries. Guest favorite for snacks and wine.</div>
         </div>
       </div>
     </div>
-    <div class="alert alert-info" style="margin-top: 16px;">
+
+    <div class="alert alert-info" style="margin-top: 28px;">
       <span class="alert-icon">💡</span>
       <div class="alert-text"><strong>Pro Tip:</strong> We recommend picking up groceries early, especially on weekends, as Ocean Beach can get busy. Olive Tree Market is perfect for last-minute essentials on the way home from the beach!</div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ===================== TRASH ===================== -->
 <section id="trash" class="section section-alt">
